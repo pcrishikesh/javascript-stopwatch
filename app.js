@@ -5,29 +5,50 @@ let start = document.querySelector("#start")
 let stop = document.querySelector("#stop")
 let reset = document.querySelector("#reset")
 
+// time value
 
-function updateTime() {
-    let secondsTime = 0
-    let miliSecondsTime = 0
-    minuteTime = 0
+let secondsValue = 1000
+let miliSecondsValue = 100
+let minuteValue = 60000
 
-    setInterval(() => {
+//  updating value 
+
+let secondsTime = 0
+let miliSecondsTime = 0
+let minuteTime = 0
+
+// clear time function
+let clearTime;
+
+
+// button function
+
+start.addEventListener('click', ()=> {
+
+    // updating function
+
+    let secondsFunction = setInterval(() => {
         secondsTime++
         seconds.innerHTML = secondsTime
-    }, 1000);
+    }, secondsValue);
 
     
-    setInterval(() => {
-        miliSecondsTime++
-        miliSeconds.innerHTML = miliSecondsTime
-    }, 100);
+    let miliSecondsFunction = setInterval(() => {
+            miliSecondsTime++
+            miliSeconds.innerHTML = miliSecondsTime
+        }, miliSecondsValue);
 
-    setInterval(() => {
-        minuteTime++
-        minute.innerHTML = minuteTime
-        secondsTime=0
-    }, 60000);
-    
-}
+    let minuteFunction = setInterval(() => {
+            minuteTime++
+            minute.innerHTML = minuteTime
+            secondsTime=0
+        }, minuteValue);
 
-start.addEventListener('click', ()=> updateTime())  
+    clearTime = ()=> {
+        clearInterval(secondsFunction)
+        clearInterval(miliSecondsFunction)
+        clearInterval(minuteFunction)
+    }
+})  
+
+stop.addEventListener('click', ()=> clearTime())
