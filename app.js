@@ -13,9 +13,9 @@ let minuteValue = 60000
 
 //  updating value 
 
-let secondsTime = 0
-let miliSecondsTime = 0
-let minuteTime = 0
+var secondsTime = 0
+var miliSecondsTime = 0
+var minuteTime = 0
 
 // clear time function
 let clearTime;
@@ -49,6 +49,19 @@ start.addEventListener('click', ()=> {
         clearInterval(miliSecondsFunction)
         clearInterval(minuteFunction)
     }
+
 })  
 
 stop.addEventListener('click', ()=> clearTime())
+
+
+function resetValue() {
+    secondsTime = 0
+    miliSecondsTime = 0
+    minuteTime = 0 
+}
+
+reset.addEventListener('click', ()=> {
+    clearTime()
+    console.log('hi');
+})
